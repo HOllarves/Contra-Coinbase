@@ -2,6 +2,7 @@ export enum CoinbaseCurrencies {
   BTC = "BTC",
   SOL = "SOL",
   ETH = "ETH",
+  USD = "USD",
   USDC = "USDC",
 }
 
@@ -29,4 +30,32 @@ export type AuthenticationResponse = {
   expires_in: number;
   refresh_token: string;
   scope: string;
+};
+
+export type OrderResponse = {
+  id: string;
+  price: string;
+  size: string;
+  product_id: string;
+  profile_id: string;
+  side: string;
+  funds: string;
+  specified_funds: string;
+  type: string;
+  settled: boolean;
+  status: string;
+};
+
+export type CoinbaseClientConfiguration = {
+  apiKey: string;
+  apiSecret: string;
+  passphrase: string;
+  environment: "SANDBOX" | "PRODUCTION";
+  outhClientId: string;
+  oauthClientSecret: string;
+  oauthRedirectUrl: string;
+};
+
+export type CoinbaseError = {
+  message: string;
 };

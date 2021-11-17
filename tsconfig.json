@@ -3,7 +3,7 @@
     "declaration": false,
     "skipLibCheck": true,
     "esModuleInterop": true,
-    "isolatedModules": true,
+    "isolatedModules": false,
     "lib": ["dom", "esnext"],
     "module": "CommonJS",
     "moduleResolution": "node",

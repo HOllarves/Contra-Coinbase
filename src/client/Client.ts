@@ -3,22 +3,25 @@ import { Buffer } from "buffer";
 import crypto from "crypto";
 import { Authentication } from "../authentication";
 import { Conversion } from "../conversion";
+import { Order } from "../order";
+import { CoinbaseClientConfiguration } from "../types";
 import { Withdrawal } from "../withdrawal";
 
 export class CoinbaseClient {
   readonly Withdrawals: Withdrawal;
   readonly Authentication: Authentication;
   readonly Conversion: Conversion;
+  readonly Order: Order;
 
-  constructor(
-    apiKey: string,
-    apiSecret: string,
-    passphrase: string,
-    environment: "SANDBOX" | "PRODUCTION",
-    outhClientId: string,
-    oauthClientSecret: string,
-    oauthRedirectUrl: string
-  ) {
+  constructor({
+    apiKey,
+    apiSecret,
+    passphrase,
+    environment,
+    outhClientId,
+    oauthClientSecret,
+    oauthRedirectUrl,
+  }: CoinbaseClientConfiguration) {
     const coinbaseProHttpClient =
       environment === "PRODUCTION"
         ? axios.create({
@@ -29,21 +32,13 @@ export class CoinbaseClient {
             baseURL: "https://api-public.sandbox.pro.coinbase.com",
             timeout: 30_000,
           });
-    const coinbaseHttpClient =
-      environment === "PRODUCTION"
-        ? axios.create({
-            baseURL: "https://api.coinbase.com/oauth",
-            timeout: 30_000,
-          })
-        : axios.create({
-            baseURL: "",
-            timeout: 30_000,
-          });
-
+    const coinbaseHttpClient = axios.create({
+      baseURL: "https://api.coinbase.com/oauth",
+      timeout: 30_000,
+    });
     coinbaseProHttpClient.interceptors.request.use(async (config) => {
       const timestamp = Date.now() / 1000;
-      const baseUrl = config.baseURL;
-      const path = baseUrl?.replace(baseUrl, "");
+      const path = config.url;
       const payload = `${timestamp}${config.method?.toUpperCase()}${path}${
         config.data
           ? JSON.stringify(config.data)
@@ -62,7 +57,6 @@ export class CoinbaseClient {
 
       return config;
     });
-
     this.Withdrawals = new Withdrawal(coinbaseProHttpClient);
     this.Authentication = new Authentication(
       coinbaseHttpClient,
@@ -71,5 +65,6 @@ export class CoinbaseClient {
       oauthRedirectUrl
     );
     this.Conversion = new Conversion(coinbaseProHttpClient);
+    this.Order = new Order(coinbaseProHttpClient);
   }
 }

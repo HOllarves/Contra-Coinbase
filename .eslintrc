@@ -1,0 +1,42 @@
+{
+  "overrides": [
+    {
+      "extends": [
+        "canonical",
+        "canonical/node",
+        "canonical/typescript",
+        "prettier"
+      ],
+      "files": ["*.ts"],
+      "parser": "@typescript-eslint/parser",
+      "parserOptions": {
+        "project": "./tsconfig.json"
+      },
+      "rules": {
+        "canonical/id-match": 0,
+        "class-methods-use-this": 0,
+        "eqeqeq": 0,
+        "filenames/match-regex": 0,
+        "fp/no-class": 0,
+        "fp/no-this": 0,
+        "no-eq-null": 0,
+        "no-restricted-properties": [
+          2,
+          {
+            "message": "Use fast-safe-stringify",
+            "object": "JSON",
+            "property": "stringify"
+          }
+        ],
+        "node/no-unpublished-import": 0,
+        "unicorn/prefer-node-protocol": 0,
+        "unicorn/prevent-abbreviations": 0
+      }
+    }
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaVersion": 6
+  },
+  "root": true
+}
