@@ -1,6 +1,5 @@
 import { CoinbaseClient } from "../";
 import * as dotenv from "dotenv";
-import { CoinbaseCurrencies } from "../types";
 
 let client: CoinbaseClient;
 

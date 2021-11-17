@@ -1,6 +1,6 @@
 import { CoinbaseClient } from "../";
 import * as dotenv from "dotenv";
-import { CoinbaseCurrencies } from "../types";
+import { CoinbaseCurrency } from "../types";
 
 let client: CoinbaseClient;
 
@@ -24,8 +24,8 @@ describe("Coinbase conversion", () => {
   test("Converts 10 USD to USDC", async () => {
     const amount = "10.00000000";
     const conversion = await client.Conversion.convertCurrency(
-      CoinbaseCurrencies.USD,
-      CoinbaseCurrencies.USDC,
+      CoinbaseCurrency.USD,
+      CoinbaseCurrency.USDC,
       amount
     );
     expect(conversion.id).toBeDefined();

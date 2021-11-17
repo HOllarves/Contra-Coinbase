@@ -1,4 +1,4 @@
-export enum CoinbaseCurrencies {
+export enum CoinbaseCurrency {
   BTC = "BTC",
   SOL = "SOL",
   ETH = "ETH",

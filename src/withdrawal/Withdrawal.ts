@@ -1,8 +1,5 @@
 import { AxiosInstance, AxiosResponse } from "axios";
-import {
-  CoinbaseCurrencies,
-  WithdrawToCoinbaseAccountResponse,
-} from "../types";
+import { CoinbaseCurrency, WithdrawToCoinbaseAccountResponse } from "../types";
 
 export class Withdrawal {
   static readonly path = "/withdrawals";
@@ -10,8 +7,8 @@ export class Withdrawal {
 
   async withdrawToCoinbaseAccount(
     coinbaseAccountId: string,
-    currency: CoinbaseCurrencies,
-    amount: number
+    currency: CoinbaseCurrency,
+    amount: string
   ): Promise<WithdrawToCoinbaseAccountResponse> {
     const response = await this.httpClient.post(Withdrawal.path, {
       coinbase_account_id: coinbaseAccountId,
