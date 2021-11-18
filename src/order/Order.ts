@@ -1,5 +1,5 @@
 import { AxiosInstance } from "axios";
-import { CoinbaseError, OrderResponse } from "../types";
+import { OrderResponse } from "../types";
 
 export class Order {
   private static path = "/orders";

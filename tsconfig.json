@@ -1,25 +1,20 @@
 {
   "compilerOptions": {
-    "declaration": false,
-    "skipLibCheck": true,
-    "esModuleInterop": true,
-    "isolatedModules": false,
-    "lib": ["dom", "esnext"],
-    "module": "CommonJS",
-    "moduleResolution": "node",
-    "noEmit": true,
-    "noFallthroughCasesInSwitch": true,
-    "noImplicitAny": true,
-    "noImplicitReturns": true,
-    "noImplicitThis": true,
-    "noUnusedLocals": false,
-    "noUnusedParameters": false,
     "outDir": "dist",
-    "resolveJsonModule": true,
-    "sourceMap": true,
-    "strict": true,
     "target": "es2018",
-    "useUnknownInCatchVariables": false
+    "lib": ["es2018", "dom"],
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "declaration": true,
+    "checkJs": false,
+    "strict": true,
+    "noImplicitReturns": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "skipLibCheck": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true
   },
-  "include": ["src", "test", "types"]
+  "exclude": ["dist", "node_modules"],
+  "include": ["src"]
 }

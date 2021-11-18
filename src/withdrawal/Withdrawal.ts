@@ -1,4 +1,4 @@
-import { AxiosInstance, AxiosResponse } from "axios";
+import { AxiosInstance } from "axios";
 import { CoinbaseCurrency, WithdrawToCoinbaseAccountResponse } from "../types";
 
 export class Withdrawal {
