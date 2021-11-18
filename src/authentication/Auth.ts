@@ -2,7 +2,7 @@ import { AxiosInstance } from "axios";
 import { AuthenticationResponse } from "../types";
 
 export class Authentication {
-  private static readonly path = "/token";
+  private static readonly path = "/oauth/token";
   constructor(
     private readonly httpClient: AxiosInstance,
     private readonly oauthClientId: string,

@@ -56,6 +56,18 @@ export type CoinbaseClientConfiguration = {
   oauthRedirectUrl: string;
 };
 
+export type UserResponse = {
+  id: string;
+  name: string;
+  username: string;
+  profile_location: string | null;
+  profile_bio: string | null;
+  profile_url: string;
+  avatar_url: string;
+  resource: string;
+  recourse_path: string;
+};
+
 export type CoinbaseError = {
   message: string;
 };

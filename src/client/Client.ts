@@ -5,6 +5,7 @@ import { Authentication } from "../authentication";
 import { Conversion } from "../conversion";
 import { Order } from "../order";
 import { CoinbaseClientConfiguration } from "../types";
+import { User } from "../user";
 import { Withdrawal } from "../withdrawal";
 
 export class CoinbaseClient {
@@ -12,6 +13,7 @@ export class CoinbaseClient {
   readonly Authentication: Authentication;
   readonly Conversion: Conversion;
   readonly Order: Order;
+  readonly User: User;
 
   constructor({
     apiKey,
@@ -33,7 +35,7 @@ export class CoinbaseClient {
             timeout: 30_000,
           });
     const coinbaseHttpClient = axios.create({
-      baseURL: "https://api.coinbase.com/oauth",
+      baseURL: "https://api.coinbase.com",
       timeout: 30_000,
     });
     coinbaseProHttpClient.interceptors.request.use(async (config) => {
@@ -66,5 +68,6 @@ export class CoinbaseClient {
     );
     this.Conversion = new Conversion(coinbaseProHttpClient);
     this.Order = new Order(coinbaseProHttpClient);
+    this.User = new User(coinbaseHttpClient);
   }
 }
